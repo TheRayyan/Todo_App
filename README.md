@@ -19,3 +19,7 @@ A simple Todo list application built with HTML, CSS, and Vanilla JavaScript. Thi
 
 ## Demo
 Check out the live demo: https://todo-app-for-me.onrender.com/
+
+## Note 
+This app is made entirely using deepseek site ai from hugging face
+The link is https://huggingface.co/spaces/enzostvs/deepsite
