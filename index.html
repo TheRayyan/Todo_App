@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
+    <title>Todo App with Settings</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="todo_app.png" type="image/x-icon">
 </head>
+
 <body class="bg-cover bg-center bg-no-repeat transition-all duration-500" id="appBackground">
     <div class="app-container">
         <div class="container mx-auto px-4 py-4 max-w-4xl h-full flex flex-col">
-            <div class="backdrop-blur-sm bg-white/80 rounded-xl shadow-xl flex-1 flex flex-col overflow-hidden dark:bg-gray-800/80">
+            <div
+                class="backdrop-blur-sm bg-white/80 rounded-xl shadow-xl flex-1 flex flex-col overflow-hidden dark:bg-gray-800/80">
                 <!-- Navigation Tabs -->
                 <div class="nav-tabs flex space-x-1 dark:bg-gray-800/90">
                     <button class="tab-button ripple-container px-4 py-2 rounded-t-lg active" data-tab="todo">
@@ -25,7 +27,7 @@
                         <i class="fas fa-info-circle mr-1"></i> About
                     </button>
                 </div>
-                
+
                 <!-- Main Content -->
                 <div class="main-content p-6">
                     <!-- Todo Tab Content -->
@@ -33,20 +35,22 @@
                         <!-- Add Todo Form -->
                         <div class="flex mb-6">
                             <input type="text" id="todoInput"
-                                    class="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                                    placeholder="Add a new task...">
-                            <button id="addTodoBtn" class="ripple-container bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-lg transition">
+                                class="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                placeholder="Add a new task...">
+                            <button id="addTodoBtn"
+                                class="ripple-container bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-lg transition">
                                 <i class="fas fa-plus"></i> Add
                             </button>
                         </div>
-                                                
+
                         <!-- Todo List -->
                         <div class="space-y-3 mb-4" id="todoList">
                             <!-- Todos will be added here -->
                         </div>
-                                                
+
                         <!-- Stats -->
-                        <div class="mt-6 pt-4 border-t border-gray-200 flex justify-between text-sm text-gray-600 dark:border-gray-700 dark:text-gray-400">
+                        <div
+                            class="mt-6 pt-4 border-t border-gray-200 flex justify-between text-sm text-gray-600 dark:border-gray-700 dark:text-gray-400">
                             <div>
                                 <span id="totalCount">0</span> tasks total
                             </div>
@@ -55,138 +59,195 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Settings Tab Content -->
                     <div class="tab-content" id="settingsTab">
                         <div class="space-y-6">
+                            <!-- Font Size Slider -->
+                            <div
+                                class="bg-white p-4 rounded-lg shadow border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                                <h2 class="text-lg font-semibold text-gray-700 mb-3 dark:text-gray-200 heading-text">
+                                    <i class="fas fa-text-height mr-2 text-blue-400"></i> Font Size
+                                </h2>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-600 dark:text-gray-400">Small</span>
+                                    <span class="text-sm text-gray-600 dark:text-gray-400">Large</span>
+                                </div>
+                                <input type="range" min="12" max="20" value="16" class="font-size-slider"
+                                    id="fontSizeSlider">
+                                <div class="flex justify-between mt-1">
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">A</span>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">A</span>
+                                    <span class="text-base text-gray-500 dark:text-gray-400">A</span>
+                                    <span class="text-lg text-gray-500 dark:text-gray-400">A</span>
+                                    <span class="text-xl text-gray-500 dark:text-gray-400">A</span>
+                                </div>
+                            </div>
+
                             <!-- Dark Mode Toggle -->
-                            <div class="bg-white p-4 rounded-lg shadow border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                            <div
+                                class="bg-white p-4 rounded-lg shadow border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                                 <h2 class="text-lg font-semibold text-gray-700 mb-3 dark:text-gray-200 heading-text">
                                     <i class="fas fa-adjust mr-2 text-blue-400"></i> Appearance
                                 </h2>
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <h3 class="font-medium text-gray-800 dark:text-gray-200 heading-text">Dark Mode</h3>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400">Toggle between light and dark theme</p>
+                                        <h3 class="font-medium text-gray-800 dark:text-gray-200 heading-text">Dark Mode
+                                        </h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Toggle between light and
+                                            dark theme</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" id="darkModeSwitch" class="sr-only peer">
-                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-500 peer-checked:bg-blue-600"></div>
+                                        <div
+                                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-500 peer-checked:bg-blue-600">
+                                        </div>
                                     </label>
                                 </div>
                             </div>
-                                                    
+
                             <!-- Background Selection -->
-                            <div class="bg-white p-4 rounded-lg shadow border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                            <div
+                                class="bg-white p-4 rounded-lg shadow border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                                 <h2 class="text-lg font-semibold text-gray-700 mb-3 dark:text-gray-200 heading-text">
                                     <i class="fas fa-image mr-2 text-blue-400"></i> Background Settings
                                 </h2>
                                 <div class="flex justify-between items-center mb-3">
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Choose your preferred background</p>
-                                    <button id="randomBgBtn" class="ripple-container text-sm bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-1 rounded-full transition dark:bg-blue-900 dark:hover:bg-blue-800 dark:text-blue-100 random-btn-text">
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Choose your preferred background
+                                    </p>
+                                    <button id="randomBgBtn"
+                                        class="ripple-container text-sm bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-1 rounded-full transition dark:bg-blue-900 dark:hover:bg-blue-800 dark:text-blue-100 random-btn-text">
                                         <i class="fas fa-random mr-1"></i> Random
                                     </button>
                                 </div>
                                 <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
                                     <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
-                                          style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500')"
-                                         data-bg="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600"></div>
+                                        style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600">
+                                    </div>
                                     <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
-                                          style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500')"
-                                         data-bg="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600"></div>
+                                        style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600">
+                                    </div>
                                     <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
-                                          style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=500')"
-                                         data-bg="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1600"></div>
+                                        style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1600">
+                                    </div>
                                     <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
-                                          style="background-image: url('https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=500')"
-                                         data-bg="https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=1600"></div>
+                                        style="background-image: url('https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=1600">
+                                    </div>
                                     <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
-                                          style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500')"
-                                         data-bg="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600"></div>
+                                        style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600">
+                                    </div>
                                     <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
-                                          style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=500')"
-                                         data-bg="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1600"></div>
+                                        style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1600">
+                                    </div>
                                     <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
-                                          style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500')"
-                                         data-bg="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600"></div>
+                                        style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600">
+                                    </div>
                                     <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
-                                          style="background-image: url('https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=500')"
-                                         data-bg="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1600"></div>
+                                        style="background-image: url('https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1600">
+                                    </div>
                                 </div>
                             </div>
-                                                    
+
                             <!-- Data Management -->
-                            <div class="bg-white p-4 rounded-lg shadow border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                            <div
+                                class="bg-white p-4 rounded-lg shadow border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                                 <h2 class="text-lg font-semibold text-gray-700 mb-3 dark:text-gray-200 heading-text">
                                     <i class="fas fa-database mr-2 text-blue-400"></i> Data Management
                                 </h2>
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <h3 class="font-medium text-gray-800 dark:text-gray-200 heading-text">Delete All Data</h3>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400">Permanently remove all your todos and settings</p>
+                                        <h3 class="font-medium text-gray-800 dark:text-gray-200 heading-text">Delete All
+                                            Data</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Permanently remove all your
+                                            todos and settings</p>
                                     </div>
-                                    <button id="deleteDataBtn" class="ripple-container bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition delete-btn-text">
+                                    <button id="deleteDataBtn"
+                                        class="ripple-container bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition delete-btn-text">
                                         <i class="fas fa-trash mr-1"></i> Delete
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- About Tab Content -->
                     <div class="tab-content" id="aboutTab">
                         <div class="text-center mb-8">
-                            <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 dark:bg-blue-900">
+                            <div
+                                class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 dark:bg-blue-900">
                                 <i class="fas fa-check-circle text-blue-500 text-4xl dark:text-blue-400"></i>
                             </div>
-                            <h2 class="text-2xl font-bold text-gray-800 mb-2 dark:text-white heading-text">About Todo App</h2>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-2 dark:text-white heading-text">About Todo
+                                App</h2>
                             <p class="text-gray-600 max-w-lg mx-auto dark:text-gray-400">
                                 A beautiful, customizable todo application that helps you stay organized and productive.
                                 Your tasks are saved locally so they persist between sessions.
                             </p>
                         </div>
-                                                
+
                         <div class="grid md:grid-cols-2 gap-6 mb-8">
-                            <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
-                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-500 dark:bg-blue-900 dark:text-blue-400">
+                            <div
+                                class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                                <div
+                                    class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-500 dark:bg-blue-900 dark:text-blue-400">
                                     <i class="fas fa-palette text-xl"></i>
                                 </div>
-                                <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-white heading-text">Customizable Backgrounds</h3>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-white heading-text">
+                                    Customizable Backgrounds</h3>
                                 <p class="text-gray-600 dark:text-gray-400">
-                                    Choose from beautiful background images in the Settings tab or let the app pick one randomly for you.
+                                    Choose from beautiful background images in the Settings tab or let the app pick one
+                                    randomly for you.
                                 </p>
                             </div>
-                            <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
-                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 text-green-500 dark:bg-green-900 dark:text-green-400">
+                            <div
+                                class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                                <div
+                                    class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 text-green-500 dark:bg-green-900 dark:text-green-400">
                                     <i class="fas fa-save text-xl"></i>
                                 </div>
-                                <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-white heading-text">Local Storage</h3>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-white heading-text">Local
+                                    Storage</h3>
                                 <p class="text-gray-600 dark:text-gray-400">
                                     Your todos are saved in your browser, so they'll be there when you come back.
                                 </p>
                             </div>
-                            <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
-                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 text-purple-500 dark:bg-purple-900 dark:text-purple-400">
+                            <div
+                                class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                                <div
+                                    class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 text-purple-500 dark:bg-purple-900 dark:text-purple-400">
                                     <i class="fas fa-tasks text-xl"></i>
                                 </div>
-                                <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-white heading-text">Task Management</h3>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-white heading-text">Task
+                                    Management</h3>
                                 <p class="text-gray-600 dark:text-gray-400">
                                     Add, complete, and delete tasks with a simple and intuitive interface.
                                 </p>
                             </div>
-                            <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
-                                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4 text-yellow-500 dark:bg-yellow-900 dark:text-yellow-400">
+                            <div
+                                class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                                <div
+                                    class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4 text-yellow-500 dark:bg-yellow-900 dark:text-yellow-400">
                                     <i class="fas fa-chart-bar text-xl"></i>
                                 </div>
-                                <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-white heading-text">Progress Tracking</h3>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-white heading-text">
+                                    Progress Tracking</h3>
                                 <p class="text-gray-600 dark:text-gray-400">
                                     See how many tasks you've completed and how many are remaining.
                                 </p>
                             </div>
                         </div>
-                                                
+
                         <div class="bg-blue-50 rounded-xl p-6 dark:bg-blue-900/50">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center dark:text-white heading-text">
+                            <h3
+                                class="text-lg font-semibold text-gray-800 mb-3 flex items-center dark:text-white heading-text">
                                 <i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Tips for Productivity
                             </h3>
                             <ul class="space-y-2 text-gray-700 dark:text-gray-300">
@@ -208,35 +269,40 @@
                                 </li>
                             </ul>
                         </div>
-                                                
-                        <div class="mt-8 pt-6 border-t border-gray-200 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
-                            <p>Created with <i class="fas fa-heart text-red-400"></i> using HTML, CSS, and JavaScript </p> <p> by Rayyan Khan, DBIT </p>
-                            <p class="mt-1">© 2025 Todo App. All rights reserved.</p>
+
+                        <div
+                            class="mt-8 pt-6 border-t border-gray-200 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
+                            <p>Created with <i class="fas fa-heart text-red-400"></i> using HTML, CSS, and JavaScript
+                            </p>
+                            <p class="mt-1">© 2023 Todo App. All rights reserved.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Delete Confirmation Modal -->
     <div class="modal" id="deleteModal">
         <div class="modal-content dark:bg-gray-800">
             <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white heading-text">
                 <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i> Confirm Deletion
             </h3>
-            <p class="text-gray-700 dark:text-gray-300">Are you sure you want to delete all your todos and settings? This action cannot be undone.</p>
+            <p class="text-gray-700 dark:text-gray-300">Are you sure you want to delete all your todos and settings?
+                This action cannot be undone.</p>
             <div class="modal-actions">
-                <button id="cancelDeleteBtn" class="ripple-container px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                <button id="cancelDeleteBtn"
+                    class="ripple-container px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
                     Cancel
                 </button>
-                <button id="confirmDeleteBtn" class="ripple-container bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition">
+                <button id="confirmDeleteBtn"
+                    class="ripple-container bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition">
                     <i class="fas fa-trash mr-1"></i> Delete All
                 </button>
             </div>
         </div>
     </div>
-    
     <script src="script.js"></script>
 </body>
+
 </html>
