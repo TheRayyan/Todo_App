@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App with Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat transition-all duration-500" id="appBackground">
+    <div class="app-container">
+        <div class="container mx-auto px-4 py-4 max-w-4xl h-full flex flex-col">
+            <div class="backdrop-blur-sm bg-white/80 rounded-xl shadow-xl flex-1 flex flex-col overflow-hidden">
+                <!-- Navigation Tabs -->
+                <div class="nav-tabs flex space-x-1">
+                    <button class="tab-button ripple-container px-4 py-2 rounded-t-lg active" data-tab="todo">
+                        <i class="fas fa-tasks mr-1"></i> Todos
+                    </button>
+                    <button class="tab-button ripple-container px-4 py-2 rounded-t-lg" data-tab="settings">
+                        <i class="fas fa-cog mr-1"></i> Settings
+                    </button>
+                    <button class="tab-button ripple-container px-4 py-2 rounded-t-lg" data-tab="about">
+                        <i class="fas fa-info-circle mr-1"></i> About
+                    </button>
+                </div>
+
+                <!-- Main Content -->
+                <div class="main-content p-6">
+                    <!-- Todo Tab Content -->
+                    <div class="tab-content active" id="todoTab">
+                        <!-- Add Todo Form -->
+                        <div class="flex mb-6">
+                            <input type="text" id="todoInput"
+                                class="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="Add a new task...">
+                            <button id="addTodoBtn"
+                                class="ripple-container bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-lg transition">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+
+                        <!-- Todo List -->
+                        <div class="todo-list-container mb-4" id="todoListContainer">
+                            <div class="space-y-3" id="todoList">
+                                <!-- Todos will be added here -->
+                            </div>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="mt-6 pt-4 border-t border-gray-200 flex justify-between text-sm text-gray-600">
+                            <div>
+                                <span id="totalCount">0</span> tasks total
+                            </div>
+                            <div>
+                                <span id="completedCount">0</span> completed
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab Content -->
+                    <div class="tab-content" id="settingsTab">
+                        <div class="space-y-6">
+                            <!-- Background Selection -->
+                            <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
+                                <h2 class="text-lg font-semibold text-gray-700 mb-3">
+                                    <i class="fas fa-image mr-2 text-blue-400"></i> Background Settings
+                                </h2>
+                                <div class="flex justify-between items-center mb-3">
+                                    <p class="text-sm text-gray-600">Choose your preferred background</p>
+                                    <button id="randomBgBtn"
+                                        class="ripple-container text-sm bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-1 rounded-full transition">
+                                        <i class="fas fa-random mr-1"></i> Random
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                                    <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
+                                        style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600">
+                                    </div>
+                                    <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
+                                        style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600">
+                                    </div>
+                                    <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
+                                        style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1600">
+                                    </div>
+                                    <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
+                                        style="background-image: url('https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=1600">
+                                    </div>
+                                    <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
+                                        style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600">
+                                    </div>
+                                    <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
+                                        style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1600">
+                                    </div>
+                                    <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
+                                        style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600">
+                                    </div>
+                                    <div class="bg-option h-16 rounded-lg cursor-pointer bg-cover bg-center"
+                                        style="background-image: url('https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=500')"
+                                        data-bg="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1600">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Data Management -->
+                            <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
+                                <h2 class="text-lg font-semibold text-gray-700 mb-3">
+                                    <i class="fas fa-database mr-2 text-blue-400"></i> Data Management
+                                </h2>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h3 class="font-medium text-gray-800">Delete All Data</h3>
+                                            <p class="text-sm text-gray-600">Permanently remove all your todos and
+                                                settings</p>
+                                        </div>
+                                        <button id="deleteDataBtn"
+                                            class="ripple-container bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition">
+                                            <i class="fas fa-trash mr-1"></i> Delete
+                                        </button>
+                                    </div>
+
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h3 class="font-medium text-gray-800">Export Data</h3>
+                                            <p class="text-sm text-gray-600">Download your todos as a JSON file</p>
+                                        </div>
+                                        <button id="exportDataBtn"
+                                            class="ripple-container bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition">
+                                            <i class="fas fa-file-export mr-1"></i> Export
+                                        </button>
+                                    </div>
+
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h3 class="font-medium text-gray-800">Import Data</h3>
+                                            <p class="text-sm text-gray-600">Upload a JSON file to restore your todos
+                                            </p>
+                                        </div>
+                                        <button id="importDataBtn"
+                                            class="ripple-container bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">
+                                            <i class="fas fa-file-import mr-1"></i> Import
+                                        </button>
+                                        <input type="file" id="importFileInput" class="hidden" accept=".json">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Tab Content -->
+                    <div class="tab-content" id="aboutTab">
+                        <div class="text-center mb-8">
+                            <div
+                                class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-check-circle text-blue-500 text-4xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-2">About Todo App</h2>
+                            <p class="text-gray-600 max-w-lg mx-auto">
+                                A beautiful, customizable todo application that helps you stay organized and productive.
+                                Your tasks are saved locally so they persist between sessions.
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                                <div
+                                    class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-500">
+                                    <i class="fas fa-palette text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Customizable Backgrounds</h3>
+                                <p class="text-gray-600">
+                                    Choose from beautiful background images in the Settings tab or let the app pick one
+                                    randomly for you.
+                                </p>
+                            </div>
+                            <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                                <div
+                                    class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 text-green-500">
+                                    <i class="fas fa-save text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Local Storage</h3>
+                                <p class="text-gray-600">
+                                    Your todos are saved in your browser, so they'll be there when you come back.
+                                </p>
+                            </div>
+                            <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                                <div
+                                    class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 text-purple-500">
+                                    <i class="fas fa-tasks text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Task Management</h3>
+                                <p class="text-gray-600">
+                                    Add, complete, and delete tasks with a simple and intuitive interface.
+                                </p>
+                            </div>
+                            <div class="feature-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                                <div
+                                    class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4 text-yellow-500">
+                                    <i class="fas fa-chart-bar text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Progress Tracking</h3>
+                                <p class="text-gray-600">
+                                    See how many tasks you've completed and how many are remaining.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Tips for Productivity
+                            </h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-400 mt-1 mr-2 text-sm"></i>
+                                    <span>Break large tasks into smaller, manageable steps</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-400 mt-1 mr-2 text-sm"></i>
+                                    <span>Prioritize your tasks and tackle the most important ones first</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-400 mt-1 mr-2 text-sm"></i>
+                                    <span>Review your todo list at the start and end of each day</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-400 mt-1 mr-2 text-sm"></i>
+                                    <span>Celebrate your completed tasks to stay motivated</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-gray-200 text-center text-sm text-gray-500">
+                            <p>Created with <i class="fas fa-heart text-red-400"></i> using HTML, CSS, and JavaScript by
+                                Rayyan Khan, DBIT</p>
+                            <p class="mt-1">© 2025 Todo App. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">
+                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i> Confirm Deletion
+            </h3>
+            <p class="text-gray-700">Are you sure you want to delete all your todos and settings? This action cannot be
+                undone.</p>
+            <div class="modal-actions">
+                <button id="cancelDeleteBtn"
+                    class="ripple-container px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
+                    Cancel
+                </button>
+                <button id="confirmDeleteBtn"
+                    class="ripple-container bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition">
+                    <i class="fas fa-trash mr-1"></i> Delete All
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
