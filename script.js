@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const todoInput = document.getElementById('todoInput');
     const addTodoBtn = document.getElementById('addTodoBtn');
     const todoList = document.getElementById('todoList');
-    const todoListContainer = document.getElementById('todoListContainer');
     const totalCount = document.getElementById('totalCount');
     const completedCount = document.getElementById('completedCount');
     const appBackground = document.getElementById('appBackground');
@@ -12,9 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
     const deleteDataBtn = document.getElementById('deleteDataBtn');
-    const exportDataBtn = document.getElementById('exportDataBtn');
-    const importDataBtn = document.getElementById('importDataBtn');
-    const importFileInput = document.getElementById('importFileInput');
     const deleteModal = document.getElementById('deleteModal');
     const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
     const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
@@ -145,9 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
             renderTodos();
             todoInput.value = '';
             todoInput.focus();
-
-            // Scroll to top to see the new todo
-            todoListContainer.scrollTo(0, 0);
         }
     }
 
@@ -246,71 +239,5 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update selected state
         bgOptions.forEach(opt => opt.classList.remove('selected'));
         bgOptions[0].classList.add('selected');
-    });
-
-    // Export data
-    exportDataBtn.addEventListener('click', () => {
-        const data = {
-            todos: todos,
-            background: currentBg
-        };
-
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `todo-app-backup-${new Date().toISOString().split('T')[0]}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        // Show success message
-        alert('Data exported successfully!');
-    });
-
-    // Import data
-    importDataBtn.addEventListener('click', () => {
-        importFileInput.click();
-    });
-
-    importFileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            try {
-                const data = JSON.parse(event.target.result);
-
-                if (data.todos && Array.isArray(data.todos)) {
-                    todos = data.todos;
-                    saveTodos();
-
-                    if (data.background) {
-                        currentBg = data.background;
-                        appBackground.style.backgroundImage = `url('${currentBg}')`;
-                        localStorage.setItem('currentBg', currentBg);
-
-                        // Update selected state
-                        bgOptions.forEach(opt => {
-                            opt.classList.remove('selected');
-                            if (opt.dataset.bg === currentBg) {
-                                opt.classList.add('selected');
-                            }
-                        });
-                    }
-
-                    renderTodos();
-                    alert('Data imported successfully!');
-                } else {
-                    throw new Error('Invalid data format');
-                }
-            } catch (error) {
-                alert('Error importing data: ' + error.message);
-            }
-        };
-        reader.readAsText(file);
-        e.target.value = ''; // Reset file input
     });
 });

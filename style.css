@@ -54,33 +54,26 @@ body {
 .main-content {
     flex: 1;
     overflow-y: auto;
-}
-
-.todo-list-container {
-    max-height: calc(100vh - 300px);
-    overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #3b82f6 #e5e7eb;
 }
 
-.todo-list-container::-webkit-scrollbar {
+.main-content::-webkit-scrollbar {
     width: 8px;
 }
 
-.todo-list-container::-webkit-scrollbar-track {
+.main-content::-webkit-scrollbar-track {
     background: #e5e7eb;
     border-radius: 10px;
 }
 
-.todo-list-container::-webkit-scrollbar-thumb {
+.main-content::-webkit-scrollbar-thumb {
     background-color: #3b82f6;
     border-radius: 10px;
 }
 
 .tab-content {
     display: none;
-    height: calc(100% - 60px);
-    overflow-y: auto;
 }
 
 .tab-content.active {
@@ -212,21 +205,6 @@ body {
     justify-content: flex-end;
     gap: 1rem;
     margin-top: 1.5rem;
-}
-
-/* Custom scrollbar for tab content */
-.tab-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.tab-content::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.tab-content::-webkit-scrollbar-thumb {
-    background-color: #3b82f6;
-    border-radius: 10px;
 }
 
 /* Responsive adjustments */
